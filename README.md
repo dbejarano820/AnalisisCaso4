@@ -7,12 +7,12 @@ El objetivo del algoritmo es crear círculos concéntricos basándose en el radi
 
 ### Análisis del Core del Algoritmo
 
-C = cantidad de círculos por dibujar
-P = cantidad de pixeles en el primer cuadrante del circulo
-N = cantidad de círculos por dibujar (radio del circulo más grande) * la cantidad de pixeles en el primer cuadrante del circulo
-N = C * P
+- C = cantidad de círculos por dibujar
+- P = cantidad de pixeles en el primer cuadrante del circulo
+- N = cantidad de círculos por dibujar (radio del circulo más grande) * la cantidad de pixeles en el primer cuadrante del circulo
+- N = C * P
 
-f(n) = 33N + 9
-O(n)
+- f(n) = 33N + 9
+- O(n)
 
 
