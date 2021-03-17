@@ -1,22 +1,33 @@
 #include <iostream>
+#include <fstream>
+#include <String>
 using namespace std;
+
+extern ofstream myfile("/puntos.txt", ofstream::trunc);
 
 // Funcion para imprimir las coordenadas de los pixeles deseados
 // Se basa en la simetria de un circulo y el hecho de que tiene 8 octantes de 45 grados cada uno. 
 void drawCircle(int xc, int yc, int x, int y)
 {
-     cout << "point(" << xc+x << "," << yc+y << ");";
-     cout << "point(" << xc-x << "," << yc+y << ");";
-    //cout << "line(" << xc+x << "," << yc+y << ","<< xc+y << "," << yc+x << ");";
-     cout << "point(" << xc+x << "," << yc-y << ");";
-     cout << "point(" << xc-x << "," << yc-y << ");";
-    //cout << "line(" << xc+x << "," << yc-y << ","<< xc+y << "," << yc-x << ");";
-     cout << "point(" << xc+y << "," << yc+x << ");";
-     cout << "point(" << xc-y << "," << yc+x << ");";
-     //cout << "line(" << xc-y << "," << yc-x << ","<< xc-x << "," << yc-y << ");";
-     cout << "point(" << xc+y << "," << yc-x << ");";
-     cout << "point(" << xc-y << "," << yc-x << ");";
-    //cout << "line(" << xc-x << "," << yc+y << ","<< xc-y << "," << yc+x << ");";
+    if(myfile.is_open()){
+        string str = to_string(xc+x)+" "+to_string(yc+y);
+        myfile<<str<<endl;
+        str = to_string(xc-x)+" "+to_string(yc+y);
+        myfile<<str<<endl;
+        str = to_string(xc+x)+" "+to_string(yc-y);
+        myfile<<str<<endl;
+        str = to_string(xc-x)+" "+to_string(yc-y);
+        myfile<<str<<endl;
+        str = to_string(xc+y)+" "+to_string(yc+x);
+        myfile<<str<<endl;
+        str = to_string(xc-y)+" "+to_string(yc+x);
+        myfile<<str<<endl;
+        str = to_string(xc+y)+" "+to_string(yc-x);
+        myfile<<str<<endl;
+        str = to_string(xc-y)+" "+to_string(yc-x);
+        myfile<<str<<endl;
+    }
+    else cout<<"Unable to open file";
 }
  
 // Funcion para crear el patrón visual, se utiliza el algortimo Bresenham para crear un circulo 
@@ -78,8 +89,25 @@ int main(){
     cout << "Ingrese el ancho del canvas: ";
     cin >> xc;
 
+    cout<<"BufferedReader reader;\n""String line;\n\n";
+
+    cout<<"void setup(){\n    size("<<xc<<","<<yc<<");\n";
+    cout<<"    background(255,255,255);\n";
+    cout<<"    reader = createReader(\"c:/Users/eduar/Documents/Tec/2021/Analisis_S1/cmake-build-debug/puntos.txt\");\n}\n\n";
+
+    cout<<"void draw(){\n    try {\n        line = reader.readLine();\n    } catch (IOException e) {\n";
+    cout<<"        e.printStackTrace();\n        line = null;\n    }\n    if (line == null) {\n";
+    cout<<"        noLoop();\n    } else {\n        printPoint(line);\n    }\n}\n\n";
+
+    cout<<"void printPoint(String linea){\n  String str = \"\";\n  int i = 0;\n  int x = 0;\n  int y = 0;\n";
+    cout<<"  while(i < linea.length()){\n    char number = linea.charAt(i);\n    if(number != ' '){\n";
+    cout<<"      str += linea.charAt(i);\n    }else{\n      if(number == ' '){\n";
+    cout<<"        x = Integer.valueOf(str);\n        str = \"\";\n      }else{\n        str += linea.charAt(i);\n";
+    cout<<"      }\n    }\n    i++;\n  }\n  y = Integer.valueOf(str);\n  point(x, y);\n}\n\n";
+
     algoritmoPatron(xc, yc);    // se llama la funcion
 
+    myfile.close();
 
     return 0;
 }
