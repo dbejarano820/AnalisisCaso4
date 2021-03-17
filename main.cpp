@@ -51,19 +51,19 @@ void algoritmoPatron(int xc, int yc)
         // se imprimen las primeras 8 coordenadas para el primer pixel en el octante
         drawCircle(xc, yc, x, y);  // --- 5 tiempos 
         // esta condicion de para marca el final del primer octante de 45 grados
-        while (y >= x) 
+        while (y >= x)  // -- 1 tiempo
         {
             // para cada pixel en el primer cuadrante de 45 grados, se retorna una coordenadas para cada uno de los 8 octantes
             x++;  // --- 2 tiempos
 
             // Se revisa el parametro de decision y se actualizan las variables dependiendo del resultado
-            if (d > 0) // --- 1 tiempo
+            if (d > 0) // --- 1 tiempo  , se toma en cuenta el "peor" caso
             {
                 y--;   // --- 2 tiempos
-                d = d + 4 * (x - y) + 10;   // --- 5 tiempos
+                d = d + 4 * (x - y) + 10;   // --- 5 tiempos ,
             }
             else
-                d = d + 4 * x + 6;  // --- 4 tiempos
+                d = d + 4 * x + 6;  
             
             // se imprimen las 8 coordenadas para un pixel en (x,y), esto es gracias a la simetria de un circulo
             drawCircle(xc, yc, x, y); // --- 5 tiempos
@@ -73,11 +73,16 @@ void algoritmoPatron(int xc, int yc)
     }
 }
 /*
-= 9 + (33 * ( N/C * N/P ) )
-= 9 + (33 * N^2/CP)
-= 9 + (33 * N^2/N )
+C = cantidad de círculos por dibujar
+P = cantidad de pixeles en el primer cuadrante del circulo
+N = cantidad de círculos por dibujar (radio del circulo más grande) * la cantidad de pixeles en el primer cuadrante del circulo
+N = C * P
 
-f(n) = 33N + 9
+= 9 + (29 * ( N/C * N/P ) )
+= 9 + (29 * N^2/CP)
+= 9 + (29 * N^2/N )
+
+f(n) = 29N + 9
 O(n)
 */
 
