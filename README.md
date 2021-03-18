@@ -18,6 +18,7 @@ El objetivo del algoritmo es crear círculos concéntricos basándose en el radi
 ### Información adicional de como correr el programa para poder pintar el patrón en processing
 
 - En la linea 15 se debe de poner el path propio de donde se guarda el archivo puntos.txt que sea crea durante la ejecución del algoritmo. Ese archivo contiene todas las coordenadas de los pixeles para pintar el patrón.
-- En consola se piden los parametros para el alto y ancho de cada canvas. Despues de ejecutar la primera prueba y antes de insertar los parametros de la segunda prueba, se debe de ir y cambiar el nombre del puntos.txt creado (le puede agregar un 1) ya que cuando corre la segunda prueba si tiene el archivo sigue con el nombre puntos.txt, lo va a sobreescribir.
+- En la consola despues de cada corrida del algoritmo, se retorna el código completo que simplemente se debe copiar y pegar en processing para pintar.
+- En la consola se piden los parametros para el alto y ancho de cada canvas. Despues de ejecutar la primera prueba y antes de insertar los parametros de la segunda prueba, se debe de ir y cambiar el nombre del puntos.txt creado (le puede agregar un 1) ya que cuando corre la segunda prueba si tiene el archivo sigue con el nombre puntos.txt, lo va a sobreescribir.
 - Por lo tanto cuando pega el código del output a processing para la primera prueba, tiene que modificar el path para que concuerde con el nombre del archivo que le pone.
 
