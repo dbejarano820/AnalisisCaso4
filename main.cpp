@@ -7,13 +7,12 @@ using namespace std;
 
 extern ofstream myfile("puntos.txt", ofstream::trunc);
 
-
 void printProcessingInfo(int x, int y){
     cout<<"BufferedReader reader;\n""String line;\n\n";
     cout<<"void setup(){\n    size("<<x<<","<<y<<");\n";
     cout<<"    background(255,255,255);\n";
+    // ACA SE DEBE DE PONER EL PATH PROPIO DE DONDE SE GUARDÓ EL TXT
     cout<<"    reader = createReader(\"/Users/danielbejarano/Desktop/Análisis de Algoritmos/Casos/Caso 4/AnalisisCaso4/puntos.txt\");\n}\n\n";
-
     cout<<"void draw(){\n    try {\n        line = reader.readLine();\n    } catch (IOException e) {\n";
     cout<<"        e.printStackTrace();\n        line = null;\n    }\n    if (line == null) {\n";
     cout<<"        noLoop();\n    } else {\n        printPoint(line);\n    }\n}\n\n";
@@ -97,8 +96,8 @@ void algoritmoPatron(int xc, int yc)
 }
 /*
 C = cantidad de círculos por dibujar
-P = cantidad de pixeles en el primer cuadrante del circulo
-N = cantidad de círculos por dibujar (radio del circulo más grande) * la cantidad de pixeles en el primer cuadrante del circulo
+P = cantidad de pixeles en el primer octante del circulo
+N = cantidad de círculos por dibujar (radio del circulo más grande) * la cantidad de pixeles en el primer octante del circulo
 N = C * P
 
 = 9 + (29 * ( N/C * N/P ) )
@@ -110,16 +109,29 @@ O(n)
 */
 
 int main(){
-    int xc, yc, xc1, yc1;
 
-    cout << "Ingrese el alto del canvas: ";
+    int xc, yc, xc1, yc1; //declaraciones de los parametros 
+
+    cout << "Ingrese el alto del primer canvas: ";
     cin >> yc;
-    cout << "Ingrese el ancho del canvas: ";
+    cout << "Ingrese el ancho del primer canvas: ";
     cin >> xc;
+    cout << endl;
 
     printProcessingInfo(xc, yc);
+    algoritmoPatron(xc, yc);    // se llama el algoritmo principal para la primera prueba
 
-    algoritmoPatron(xc, yc);    // se llama el algoritmo principal
+    // aca se debe ir y cambiar el nombre del punto.txt que se creó, si no se va a overwrite y se pierde
+    // cuando se cambia el nombre del archivo, claramente tambien se debe de modificar el path que se lee en el código que pegamos en processing
+   
+    cout << "Ingrese el alto del segundo canvas: ";
+    cin >> yc1;
+    cout << "Ingrese el ancho del segundo canvas: ";
+    cin >> xc1;
+    cout << endl;
+
+    printProcessingInfo(xc1, yc1);
+    algoritmoPatron(xc1, yc1);    // se llama el algoritmo principal para le segunda prueba
 
     myfile.close();
 
